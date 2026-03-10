@@ -1,0 +1,195 @@
+1)Data classification
+
+rain<-c(30,15,21,56,43,20,41,60,32)
+(rain)
+
+series<-ts(rain,start=c(2025,4),frequency=9)
+(series)
+
+summary(series)
+plot(series)
+
+
+
+2) clustering
+
+print(iris)
+head(iris)
+summary(iris)
+
+obj<-na.omit(iris)
+obj
+
+obj$Species<-NULL
+obj
+
+kc<-kmeans(obj,3)
+kc
+
+library(cluster)
+clusplot(obj,kc$cluster)
+
+
+3)Logistic regression
+print(mtcars)
+head(mtcars)
+summary(mtcars)
+names(mtcars)
+
+res<-glm(formula=am~hp+wt ,data=mtcars, family="binomial")
+summary(res)
+
+plot(res ,which=1)
+
+
+4)Linear regression
+
+
+data<-read.csv("",header="TRUE")
+data
+head(data)
+
+str(data)
+summary(data)
+tail(data)
+
+install.packages("psych")
+library(psych)
+describe(data)
+
+
+names(data)
+relation <- lm(Height.Inches ~ Weight.Pounds, data=data)
+relation
+
+attach(data)
+plot(data$Height.Inches ,data$Weight.Pounds, main="graph" , xlab="weight" ,ylab="height" ,col="blue" ,pch=16 ,lwd=2)
+
+abline(relation , col="red" ,lwd=2)
+
+pre<-predict(relation , data)
+plot(Height.Inches ~ Weight.Pounds, main="graph" , xlab="weight" ,ylab="height" ,col="red" ,pch=16 ,lwd=2)
+line(data$Weight.Pounds , pre ,col="pink" , lwd=2)
+
+
+
+or
+
+data <- read.csv("C:/Users/Sampada Bagawe/Downloads/hw_200.csv",
+                 header = FALSE, skip = 1)
+colnames(data) <- c("Index","Height.Inches","Weight.Pounds")
+
+head(data)
+names(data)
+
+relation <- lm(Height.Inches ~ Weight.Pounds, data = data)
+summary(relation)
+
+
+plot(data$Weight.Pounds, data$Height.Inches, main = "Height vs Weight",xlab = "Weight (Pounds)",
+     ylab = "Height (Inches)",
+     col = "blue",
+     pch = 16)
+
+abline(relation, col = "red", lwd = 2)
+
+pre <- predict(relation, data)
+lines(data$Weight.Pounds, pre, col = "green", lwd = 2)
+
+
+
+
+
+using pands
+
+pip install pandas 
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("sales_data.csv")
+print(data)
+
+d = data.groupby('Category')['Price'].sum()
+print(d)
+
+total = data['Stock'].sum()
+print("Total Stock:", total)
+
+print(data.describe())
+print(data.mean(numeric_only=True))
+
+d.plot(kind="line", marker="s")
+plt.plot(d.index, d.values, marker="s")
+plt.grid(True)
+
+plt.show()
+
+
+
+
+using python data visual
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+stud_data ={
+	"name":["kunal","jayesh","sam","sonya"],
+	"age":[8,20,21,15]}
+
+data=pd.DataFrame(stud_data)
+
+
+age_class=data.groupby('age').sum()
+
+plt.figure()
+plt.bar(age_class.index , age.class.values)
+plt.xlable("age")
+plt.ylable("size")
+plt.title("graph")
+plt.show()
+
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+stud_data ={
+	"name":["kunal","jayesh","sam","sonya"],
+	"age":[8,20,21,15]}
+
+data=pd.DataFrame(stud_data)
+
+
+a=data.groupby('name')['age'].sum()
+
+plt.figure()
+plt.bar(a.index ,a.values)
+plt.xlabel("Age")
+plt.ylabel("size")
+plt.title("graph")
+plt.show()
+
+
+
+plt.figure()
+plt.pie(a.values ,autopct="%1.1f%%")
+plt.xlabel("Age")
+plt.ylabel("size")
+plt.title("graph")
+plt.show()
+
+
+plt.figure()
+plt.scatter(a.index ,a.values)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
+
+
+plt.figure()
+plt.plot(a.index ,a.values)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
